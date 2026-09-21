@@ -41,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
             child: CustomTexfield(
               myhint: "input password",
               txtcontroller: txtPassword,
+              obscureText: true,
             ),
           ),
 
