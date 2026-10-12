@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Column(
         children: [
           Text(
-            "Welcome to application " + statusLogin,
+            "Welcome to application $statusLogin",
             style: TextStyle(
               fontSize: 30,
               color: const Color.fromARGB(255, 3, 62, 189),
