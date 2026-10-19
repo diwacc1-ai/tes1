@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tes1/controllers/list_makanan_controller.dart';
-import 'package:tes1/pages/detail_list_page.dart';
+import 'package:tes1/routes.dart';
 
 class ListMakananPages extends StatelessWidget {
   const ListMakananPages({super.key});
@@ -41,8 +41,8 @@ class ListMakananPages extends StatelessWidget {
               trailing: const Icon(Icons.arrow_forward_ios_rounded),
               // Kirim data lewat arguments
               onTap: () {
-                Get.to(
-                  () => const DetailListPage(),
+                Get.toNamed(
+                  Routes.detail_list,
                   arguments: makanan,
                 );
               },
