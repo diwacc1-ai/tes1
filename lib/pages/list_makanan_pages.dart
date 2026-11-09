@@ -42,7 +42,7 @@ class ListMakananPages extends StatelessWidget {
               // Kirim data lewat arguments
               onTap: () {
                 Get.toNamed(
-                  Routes.detail_list,
+                  Routes.detailList,
                   arguments: makanan,
                 );
               },

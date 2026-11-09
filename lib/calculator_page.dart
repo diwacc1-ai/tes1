@@ -1,72 +1,92 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:tes1/components/custom_texfield.dart';
-import 'package:tes1/controllers/kalkulator_controller.dart';
 import 'package:tes1/components/custom_button.dart';
+import 'package:tes1/controllers/kalkulator_controller.dart';
 
 class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});
 
   final controller = Get.put(KalkulatorController());
 
+  Widget _buildInputField({
+    required String hint,
+    required TextEditingController textController,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: TextField(
+        controller: textController,
+        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+        onChanged: (_) => controller.updateWarning(),
+        decoration: InputDecoration(
+          hintText: hint,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("my kalkulator")),
+      appBar: AppBar(title: const Text("my kalkulator")),
       body: Column(
         children: [
-          CustomTexfield(
-            myhint: "input angka 1",
-            txtcontroller: controller.txtangka1,
-            numericOnly: true,
-            onChanged: (_) => controller.updateWarning(),
+          _buildInputField(
+            hint: "input angka 1",
+            textController: controller.txtangka1,
           ),
-          CustomTexfield(
-            myhint: "input angka 2",
-            txtcontroller: controller.txtangka2,
-            numericOnly: true,
-            onChanged: (_) => controller.updateWarning(),
+          _buildInputField(
+            hint: "input angka 2",
+            textController: controller.txtangka2,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                  text: "+",
-                  onPressed: () => controller.calculate(controller.tambah),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                    text: "+",
+                    onPressed: () => controller.calculate(controller.tambah),
+                  ),
                 ),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: CustomButton(
-                  text: "-",
-                  onPressed: () => controller.calculate(controller.kurang),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: CustomButton(
+                    text: "-",
+                    onPressed: () => controller.calculate(controller.kurang),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          SizedBox(height: 20),
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton(
-                  text: "/",
-                  onPressed: () => controller.calculate(controller.bagi),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomButton(
+                    text: "/",
+                    onPressed: () => controller.calculate(controller.bagi),
+                  ),
                 ),
-              ),
-              SizedBox(width: 12),
-              Expanded(
-                child: CustomButton(
-                  text: "x",
-                  onPressed: () => controller.calculate(controller.kali),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: CustomButton(
+                    text: "x",
+                    onPressed: () => controller.calculate(controller.kali),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-
           Obx(
             () => Text(
               "hasil ${controller.hasilHitung.value}",
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
           ),
           Obx(

@@ -57,7 +57,7 @@ class _DaftarMakanan extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () =>
-                    Get.toNamed(Routes.detail_list, arguments: makanan),
+                    Get.toNamed(Routes.detailList, arguments: makanan),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

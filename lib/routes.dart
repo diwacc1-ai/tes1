@@ -1,24 +1,27 @@
 import 'package:get/get.dart';
+import 'package:tes1/pages/login_page.dart';
 import 'package:tes1/pages/registration_page.dart';
 import 'package:tes1/pages/confirm_registration_page.dart';
 import 'package:tes1/pages/list_makanan_pages.dart';
 import 'package:tes1/pages/detail_list_page.dart';
 import 'package:tes1/pages/main_menu.dart';
-import 'package:tes1/controllers/main_menu_controllers.dart';
 
 class Routes {
+  static const String login = '/login';
   static const String registration = '/registration';
-  static const String confirm_registration = '/confirm_registration';
-  static const String list_makanan = "/list_makanan";
-  static const String main_menu = "/main_menu";
-  static const String detail_list = "/detail_list";
-  
+  static const String confirmRegistration = '/confirm_registration';
+  static const String listMakanan = "/list_makanan";
+  static const String mainMenu = "/main_menu";
+  static const String detailList = "/detail_list";
 
   static final myPages = [
+    GetPage(name: login, page: () => LoginPage()),
     GetPage(name: registration, page: () => RegistrationPage()),
-    GetPage(name: confirm_registration, page: () => ConfirmRegistrationPage()),
-    GetPage(name: list_makanan, page: () => const ListMakananPages()),
-    GetPage(name: detail_list, page: () => const DetailListPage()),
-    GetPage(name: main_menu, page: () => MainMenu()),
+    GetPage(name: confirmRegistration, page: () => ConfirmRegistrationPage()),
+    GetPage(name: listMakanan, page: () => const ListMakananPages()),
+    GetPage(name: detailList, page: () => const DetailListPage()),
+    GetPage(name: mainMenu, page: () => MainMenu()),
   ];
+
+
 }
